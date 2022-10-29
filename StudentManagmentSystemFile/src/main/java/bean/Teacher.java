@@ -6,6 +6,12 @@ public class Teacher extends Person{
     private double salary;
     private Student[] students;
 
+    public Teacher(String name, String surname, int age){
+        super.setName(name);
+        super.setSurname(surname);
+        super.setAge(age);
+    }
+
     public Student[] getStudents() {
         return students;
     }

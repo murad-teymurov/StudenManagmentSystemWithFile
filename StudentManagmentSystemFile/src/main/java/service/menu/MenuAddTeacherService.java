@@ -4,6 +4,7 @@ import bean.Config;
 import bean.Student;
 import bean.Teacher;
 import service.menu.inter.MenuAddTeacherServiceInter;
+import utill.FileUtility;
 
 import java.util.Scanner;
 
@@ -18,11 +19,17 @@ public class MenuAddTeacherService implements MenuAddTeacherServiceInter {
         System.out.println("enter surname:");
         String surname = sc2.nextLine();
 
-        Teacher teacher = new Teacher();
-        teacher.setName(name);
-        teacher.setSurname(surname);
+        Scanner sc3 = new Scanner(System.in);
+        System.out.println("enter age");
+        int age = sc3.nextInt();
+
+        Teacher teacher = new Teacher(name,surname,age);
+//        teacher.setName(name);
+//        teacher.setSurname(surname);
 
         Config.getInstance().appendTeacher(teacher);
+        FileUtility.writeObjectToFile(Config.getInstance(),"base.obj");
         System.out.println("Teacher added!");
+
     }
 }

@@ -1,5 +1,7 @@
 package bean;
 
+import utill.FileUtility;
+
 import java.io.Serializable;
 
 public class Config implements Serializable {
@@ -8,6 +10,16 @@ public class Config implements Serializable {
     private Student[] students = new Student[0];
     private Teacher[] teachers = new Teacher[0];
     private static boolean loggedIn;
+
+    public static void initialize() {
+       Object object = FileUtility.readObjectFile("base.obj");
+       if(object == null){
+           return;
+       }
+       if(object instanceof Config){
+           config = (Config) object;
+       }
+    }
 
     public Student[] getStudents() {
         return students;
